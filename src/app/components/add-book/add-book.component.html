@@ -1,0 +1,65 @@
+<div class="container">
+  <div class="card card-body">
+    <h2 class="card-title text-primary">Add new book</h2>
+    <form #form="ngForm" (ngSubmit)="form.valid && addBook()" novalidate>
+      <div class="form-group">
+        <label for="name">Name</label>
+        <input type="text"
+               class="form-control"
+               name="name"
+               [(ngModel)]="book.name"
+               id="name"
+               #bookName="ngModel"
+               required
+        >
+      </div>
+      <div class="alert alert-danger" *ngIf="bookName.touched && bookName.invalid && bookName.dirty">Name is required</div>
+      <div class="form-group">
+        <label for="description">Description</label>
+        <input type="text"
+               class="form-control"
+               name="description"
+               [(ngModel)]="book.description"
+               id="description"
+               #bookDescription="ngModel"
+               required
+        >
+      </div>
+      <div class="alert alert-danger" *ngIf="bookDescription.touched && bookDescription.invalid && bookDescription.dirty">Description is required</div>
+      <div class="form-group">
+        <label for="author">Author</label>
+        <input type="text"
+               class="form-control"
+               name="author"
+               [(ngModel)]="book.author"
+               id="author"
+               #bookAuthor="ngModel"
+               required
+        >
+      </div>
+      <div class="alert alert-danger" *ngIf="bookAuthor.touched && bookAuthor.invalid && bookAuthor.dirty">Author is required</div>
+      <div class="form-group">
+        <label for="price">Price</label>
+        <input type="text"
+               class="form-control"
+               name="price"
+               [(ngModel)]="book.price"
+               id="price"
+               #bookPrice="ngModel"
+               required
+        >
+      </div>
+      <div class="alert alert-danger" *ngIf="bookPrice.touched && bookPrice.invalid && bookPrice.dirty">Price is required</div>
+      <div class="form-group" *ngFor="let link of book.links; let i = index">
+        <label for="{{link.type}}">Link: {{link.type}}</label>
+        <input type="text"
+               class="form-control"
+               name="{{link.type}}"
+               [(ngModel)]="book.links[i].link"
+               id="{{link.type}}"
+        >
+      </div>
+      <button class="btn btn-primary">Add</button>
+    </form>
+  </div>
+</div>
