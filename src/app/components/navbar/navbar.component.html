@@ -7,7 +7,10 @@
   <div class="collapse navbar-collapse" id="navbarColor02">
     <ul class="navbar-nav mr-auto" *ngIf="isLogin">
       <li class="nav-item">
-        <a class="nav-link" routerLink="/panel" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">Home</a>
+        <a class="nav-link" routerLink="/" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">Home</a>
+      </li>
+      <li class="nav-item" *ngIf="isLogin">
+        <a class="nav-link" routerLink="/panel" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">Panel</a>
       </li>
       <li class="nav-item">
         <a class="nav-link" routerLink="/about" routerLinkActive="active">About</a>
@@ -15,6 +18,9 @@
     </ul>
   </div>
   <span class="ml-auto mr-3 navbar-text">{{userName}}</span>
+  <div class="navbar-text mr-3" *ngIf="isPublic">
+    <app-shopping-cart></app-shopping-cart>
+  </div>
   <button class="btn btn-danger" *ngIf="isLogin" (click)="logout()">Logout</button>
   <a routerLink="/login" class="btn btn-warning" *ngIf="!isLogin">Login</a>
   <a routerLink="/register" class="btn btn-success ml-3" *ngIf="!isLogin">Register</a>

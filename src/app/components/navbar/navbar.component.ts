@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from "../../services/auth.service";
-import { Router } from "@angular/router";
+import { Router, Event, NavigationEnd } from "@angular/router";
 
 @Component({
   selector: 'app-navbar',
@@ -10,6 +10,7 @@ import { Router } from "@angular/router";
 export class NavbarComponent implements OnInit {
   isLogin: boolean = false;
   userName: string;
+  isPublic: boolean = false;
 
   constructor(
     private authService: AuthService,
@@ -17,6 +18,11 @@ export class NavbarComponent implements OnInit {
   ) { }
 
   ngOnInit() {
+    this.router.events.subscribe((event: Event) => {
+      if (event instanceof NavigationEnd) {
+        this.isPublic = event.url.indexOf('panel') === -1;
+      }
+    });
     this.authService.checkAuth().subscribe(auth => {
         if (auth) {
           this.userName = auth.email;

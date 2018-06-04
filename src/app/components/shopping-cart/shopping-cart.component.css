@@ -1,0 +1,4 @@
+.cart-preview,
+.dropdown-item .fa-remove {
+  cursor: pointer;
+}

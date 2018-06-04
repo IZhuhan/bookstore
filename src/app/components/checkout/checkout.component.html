@@ -1,0 +1,28 @@
+<div class="container">
+  <table class="table table-striped">
+    <thead>
+    <tr>
+      <th scope="col">Name</th>
+      <th scope="col">Price</th>
+      <th scope="col">Count</th>
+      <th scope="col">Total price</th>
+      <th scope="col"></th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr *ngFor="let item of cartItems">
+      <th scope="row">{{item.name}}</th>
+      <td>{{item.price | currency: "USD"}}</td>
+      <td>
+        <input type="number" min="1" [(ngModel)]="item.quantity" #itemsQuantity="ngModel">
+      </td>
+      <td>{{item.price * item.quantity | currency: "USD"}}</td>
+      <td>
+        <i class="fa fa-remove ml-auto text-danger" (click)="deleteItem(item.id)"></i>
+      </td>
+    </tr>
+    </tbody>
+  </table>
+  <div class="alert alert-info" *ngIf="!cartItems.length">Shopping cart is empty</div>
+  <button class="btn btn-primary">Checkout</button>
+</div>

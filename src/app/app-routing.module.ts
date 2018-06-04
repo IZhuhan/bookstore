@@ -10,9 +10,12 @@ import { NotFoundComponent } from "./components/not-found/not-found.component";
 import { LoginComponent } from "./components/login/login.component";
 import { AuthGuard } from "./guard/auth.guard";
 import { RegisterComponent } from "./components/register/register.component";
+import { ClientHomeComponent } from "./components/client-home/client-home.component";
+import { CheckoutComponent } from "./components/checkout/checkout.component";
 
 const routes: Routes = [
-  { path: '', redirectTo: 'panel', pathMatch: 'full', canActivate: [AuthGuard] },
+  { path: '', component: ClientHomeComponent },
+  { path: 'checkout', component: CheckoutComponent },
   { path: 'login', component: LoginComponent },
   { path: 'register', component: RegisterComponent },
   { path: 'panel', component: PanelComponent, canActivate: [AuthGuard] },
