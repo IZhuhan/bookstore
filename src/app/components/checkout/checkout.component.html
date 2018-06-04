@@ -14,9 +14,13 @@
       <th scope="row">{{item.name}}</th>
       <td>{{item.price | currency: "USD"}}</td>
       <td>
-        <input type="number" min="1" [(ngModel)]="item.quantity" #itemsQuantity="ngModel">
+        <input type="number"
+               min="1"
+               [(ngModel)]="item.quantity"
+               (change)="item.totalPrice = item.quantity * item.price"
+        >
       </td>
-      <td>{{item.price * item.quantity | currency: "USD"}}</td>
+      <td>{{item.totalPrice || item.price | currency: "USD"}}</td>
       <td>
         <i class="fa fa-remove ml-auto text-danger" (click)="deleteItem(item.id)"></i>
       </td>

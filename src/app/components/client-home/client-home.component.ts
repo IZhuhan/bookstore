@@ -64,7 +64,8 @@ export class ClientHomeComponent implements OnInit {
       id: book.id,
       price: book.price,
       name: book.name,
-      quantity: 1
+      quantity: 1,
+      totalPrice: book.price
     };
 
     this.shoppingCartService.addItem(newCartItem).subscribe(book => {
