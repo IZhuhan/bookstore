@@ -1,0 +1,90 @@
+<div class="container">
+  <div *ngFor="let order of orders; let i = index" class="mb-5">
+    <div class="card mb-3">
+      <div class="card-header">
+        Order information #{{i + 1}}
+      </div>
+      <ul class="list-group list-group-flush">
+        <li class="list-group-item">
+          <label for="full-name">Full name: {{order.fullName}}</label>
+          <input type="text"
+                 name="full-name"
+                 id="full-name"
+                 class="form-control"
+                 [(ngModel)]="order.fullName"
+                 required
+                 [readonly]="!order.isEdit"
+          >
+        </li>
+        <li class="list-group-item">
+          <label for="email">Email: {{order.email}}</label>
+          <input type="text"
+                 name="email"
+                 id="email"
+                 class="form-control"
+                 [(ngModel)]="order.email"
+                 required
+                 [readonly]="!order.isEdit"
+          >
+        </li>
+        <li class="list-group-item">
+          <label for="phone">Phone: {{order.phone}}</label>
+          <input type="text"
+                 name="phone"
+                 id="phone"
+                 class="form-control"
+                 [(ngModel)]="order.phone"
+                 required
+                 [readonly]="!order.isEdit"
+          >
+        </li>
+      </ul>
+    </div>
+    <table class="table">
+      <thead>
+        <tr>
+          <th>#</th>
+          <th>Name</th>
+          <th>Price</th>
+          <th>Count</th>
+          <th>Sum</th>
+          <th></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let item of order.items; let idx = index">
+          <td>{{idx + 1}}</td>
+          <th scope="row">{{item.name}}</th>
+          <td>{{item.price | currency: "USD"}}</td>
+          <td>
+            <input type="number"
+                   name="count"
+                   min="1"
+                   max="100"
+                   [(ngModel)]="item.count"
+                   [readonly]="!order.isEdit"
+                   (change)="item.sum = item.count * item.price"
+            >
+          </td>
+          <td>{{item.sum  | currency: "USD"}}</td>
+          <td>
+            <i class="fa fa-remove ml-auto text-danger" (click)="deleteItem(item.id)"></i>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+    <select [(ngModel)]="order.status"
+            class="form-control"
+            name="status"
+            [disabled]="!order.isEdit"
+    >
+      <option value="processing">processing</option>
+      <option value="shipping">shipping</option>
+      <option value="closed">closed</option>
+    </select>
+    <button class="btn btn-block mt-3"
+            [ngClass]="{'btn-primary': !order.isEdit, 'btn-warning': order.isEdit}"
+            (click)="order.isEdit = !order.isEdit; !order.isEdit ? saveChanges(order, i) : order.isEdit"
+    >{{order.isEdit ? 'Save changes in' : 'Edit'}} order #{{i + 1}}</button>
+  </div>
+</div>

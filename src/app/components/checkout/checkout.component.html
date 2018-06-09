@@ -1,4 +1,4 @@
-<div class="container">
+<div class="container" *ngIf="!addressIsVisible">
   <table class="table table-striped">
     <thead>
     <tr>
@@ -10,23 +10,73 @@
     </tr>
     </thead>
     <tbody>
-    <tr *ngFor="let item of cartItems">
+    <tr *ngFor="let item of checkoutList">
       <th scope="row">{{item.name}}</th>
       <td>{{item.price | currency: "USD"}}</td>
       <td>
         <input type="number"
+               name="count"
                min="1"
-               [(ngModel)]="item.quantity"
-               (change)="item.totalPrice = item.quantity * item.price"
+               max="100"
+               [(ngModel)]="item.count"
+               (change)="onChangeItemCount(item)"
         >
       </td>
-      <td>{{item.totalPrice || item.price | currency: "USD"}}</td>
+      <td>{{item.sum  | currency: "USD"}}</td>
       <td>
         <i class="fa fa-remove ml-auto text-danger" (click)="deleteItem(item.id)"></i>
       </td>
     </tr>
+    <tr>
+      <th>Total price:</th>
+      <td></td>
+      <td></td>
+      <td>{{totalPrice | currency: "USD"}}</td>
+      <td></td>
+    </tr>
     </tbody>
   </table>
-  <div class="alert alert-info" *ngIf="!cartItems.length">Shopping cart is empty</div>
-  <button class="btn btn-primary">Checkout</button>
+  <div class="alert alert-info" *ngIf="!checkoutList.length">Shopping cart is empty</div>
+  <button class="btn btn-primary" (click)="addressIsVisible = true">Checkout</button>
+</div>
+
+<div class="container" *ngIf="addressIsVisible">
+  <div class="col-6 mx-auto">
+    <div class="card card-body">
+      <button class="btn btn-warning mb-3" (click)="addressIsVisible = false">Back to table</button>
+      <form novalidate #form="ngForm" (ngSubmit)="onSubmit()">
+        <div class="form-group">
+          <label for="full-name">Full name</label>
+          <input type="text"
+                 class="form-control"
+                 id="full-name"
+                 name="full-name"
+                 [(ngModel)]="fullName"
+                 required
+          >
+        </div>
+        <div class="form-group">
+          <label for="email">Email</label>
+          <input type="text"
+                 class="form-control"
+                 id="email"
+                 name="email"
+                 [(ngModel)]="email"
+                 required
+          >
+        </div>
+        <div class="form-group">
+          <label for="phone">Phone</label>
+          <input type="text"
+                 class="form-control"
+                 id="phone"
+                 name="phone"
+                 [(ngModel)]="phone"
+                 required
+          >
+        </div>
+        <button class="btn btn-primary btn-block" [disabled]="form.invalid">Place an order</button>
+      </form>
+    </div>
+  </div>
 </div>

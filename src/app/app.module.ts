@@ -28,6 +28,8 @@ import { ShoppingCartComponent } from './components/shopping-cart/shopping-cart.
 import { ClientHomeComponent } from './components/client-home/client-home.component';
 import { ShoppingCartService } from "./services/shopping-cart.service";
 import { CheckoutComponent } from './components/checkout/checkout.component';
+import { SalesService } from "./services/sales.service";
+import { OrdersComponent } from './components/orders/orders.component';
 
 
 @NgModule({
@@ -45,7 +47,8 @@ import { CheckoutComponent } from './components/checkout/checkout.component';
     CurrencyComponent,
     ShoppingCartComponent,
     ClientHomeComponent,
-    CheckoutComponent
+    CheckoutComponent,
+    OrdersComponent
   ],
   imports: [
     BrowserModule,
@@ -56,7 +59,7 @@ import { CheckoutComponent } from './components/checkout/checkout.component';
     AngularFirestoreModule,
     AngularFireAuthModule
   ],
-  providers: [BooksService, IdService, AuthService, CurrencyService, ShoppingCartService],
+  providers: [BooksService, IdService, AuthService, CurrencyService, ShoppingCartService, SalesService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
