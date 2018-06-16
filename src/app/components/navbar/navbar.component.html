@@ -1,18 +1,20 @@
-<nav class="navbar navbar-expand-lg navbar-dark bg-primary mb-5">
-  <a routerLink="/panel" class="navbar-brand">Book store</a>
-  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor02" aria-controls="navbarColor02" *ngIf="isLogin">
-    <span class="navbar-toggler-icon"></span>
-  </button>
+<nav class="navbar navbar-expand-md flex-column flex-sm-row justify-content-between navbar-dark bg-primary mb-5">
+  <div class="navbar-wrap">
+    <a routerLink="/panel" class="navbar-brand">Book store</a>
+    <button class="navbar-toggler mr-2" type="button" data-toggle="collapse" data-target="#navbarColor02" aria-controls="navbarColor02" *ngIf="isLogin">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+  </div>
 
-  <div class="collapse navbar-collapse" id="navbarColor02">
-    <ul class="navbar-nav mr-auto" *ngIf="isLogin">
+  <div class="collapse navbar-collapse order-sm-1 order-md-0" id="navbarColor02" *ngIf="isLogin">
+    <ul class="navbar-nav mr-auto">
       <li class="nav-item">
         <a class="nav-link" routerLink="/" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">Home</a>
       </li>
-      <li class="nav-item" *ngIf="isLogin">
+      <li class="nav-item">
         <a class="nav-link" routerLink="/panel" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">Panel</a>
       </li>
-      <li class="nav-item" *ngIf="isLogin">
+      <li class="nav-item">
         <a class="nav-link" routerLink="/orders" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">Orders</a>
       </li>
       <li class="nav-item">
@@ -20,11 +22,14 @@
       </li>
     </ul>
   </div>
-  <span class="ml-auto mr-3 navbar-text">{{userName}}</span>
-  <div class="navbar-text mr-3" *ngIf="isPublic">
-    <app-shopping-cart></app-shopping-cart>
+
+  <div class="controls-wrap mt-2 mt-sm-0">
+    <span class="mr-3 navbar-text" *ngIf="isLogin">{{userName}}</span>
+    <div class="navbar-text mr-3" *ngIf="isPublic && isLogin">
+      <app-shopping-cart></app-shopping-cart>
+    </div>
+    <button class="btn btn-danger" *ngIf="isLogin" (click)="logout()">Logout</button>
+    <a routerLink="/login" class="btn btn-warning" *ngIf="!isLogin">Login</a>
+    <a routerLink="/register" class="btn btn-success ml-3" *ngIf="!isLogin">Register</a>
   </div>
-  <button class="btn btn-danger" *ngIf="isLogin" (click)="logout()">Logout</button>
-  <a routerLink="/login" class="btn btn-warning" *ngIf="!isLogin">Login</a>
-  <a routerLink="/register" class="btn btn-success ml-3" *ngIf="!isLogin">Register</a>
 </nav>

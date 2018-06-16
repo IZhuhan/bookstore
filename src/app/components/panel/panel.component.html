@@ -1,10 +1,10 @@
 <div class="container">
   <div class="controls row mb-3">
-    <div class="col-2">
+    <div class="col-12 col-sm-4">
       <a routerLink="/addbook" class="btn btn-primary btn-block">Add new book</a>
     </div>
     <!-- /col -->
-    <div class="col-4">
+    <div class="col-12 col-sm-4 mt-4 mt-sm-0 mb-4 mb-sm-0">
       <input type="text"
              class="form-control"
              name="searchText"
@@ -14,7 +14,7 @@
       >
     </div>
     <!-- /col -->
-    <div class="col-4">
+    <div class="col-12 col-sm-4">
       <app-currency></app-currency>
     </div>
     <!-- /col -->
@@ -26,8 +26,8 @@
       <div class="alert alert-info">The store is empty</div>
     </div>
     <!-- /alert -->
-    <div class="col-4" *ngFor="let book of books">
-      <div class="card card-body">
+    <div class="col-12 col-md-6 col-lg-4" *ngFor="let book of books">
+      <div class="card card-body mb-4">
         <div class="card-title d-flex align-items-center">{{book.name}} <span class="badge badge-success ml-auto">{{book.price * currentCurrency['coefficient'] | currency: currentCurrency['name']}}</span></div>
         <span class="text-info">{{book.author}}</span>
         <span class="text-primary">{{book.date | customDate: "ru-RU": "short"}}</span>
@@ -45,7 +45,7 @@
       <div class="alert alert-info" *ngIf="searchText && !searchingResult.length">Books not found</div>
     </div>
     <!-- /alert -->
-    <div class="col-4" *ngFor="let book of searchingResult">
+    <div class="col-12 col-md-6 col-lg-4" *ngFor="let book of searchingResult">
       <div class="card card-body">
         <div class="card-title d-flex align-items-center">{{book.name}} <span class="badge badge-success ml-auto">{{book.price | currency: 'USD': 'symbol': '3.0-2'}}</span></div>
         <span class="text-info">{{book.author}}</span>

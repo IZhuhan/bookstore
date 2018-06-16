@@ -11,7 +11,6 @@ import { NotFoundComponent } from './components/not-found/not-found.component';
 import { AppRoutingModule } from './/app-routing.module';
 import { NavbarComponent } from './components/navbar/navbar.component';
 import { BooksService } from './services/books.service';
-import { IdService } from './services/id.service';
 import { FormsModule } from "@angular/forms";
 import { FlashMessagesModule } from "angular2-flash-messages";
 import { LoginComponent } from './components/login/login.component';
@@ -59,7 +58,7 @@ import { OrdersComponent } from './components/orders/orders.component';
     AngularFirestoreModule,
     AngularFireAuthModule
   ],
-  providers: [BooksService, IdService, AuthService, CurrencyService, ShoppingCartService, SalesService],
+  providers: [BooksService, AuthService, CurrencyService, ShoppingCartService, SalesService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

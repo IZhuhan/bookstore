@@ -40,8 +40,9 @@
         </li>
       </ul>
     </div>
-    <table class="table">
-      <thead>
+    <div class="table-responsive">
+      <table class="table">
+        <thead>
         <tr>
           <th>#</th>
           <th>Name</th>
@@ -50,8 +51,8 @@
           <th>Sum</th>
           <th></th>
         </tr>
-      </thead>
-      <tbody>
+        </thead>
+        <tbody>
         <tr *ngFor="let item of order.items; let idx = index">
           <td>{{idx + 1}}</td>
           <th scope="row">{{item.name}}</th>
@@ -71,8 +72,9 @@
             <i class="fa fa-remove ml-auto text-danger" (click)="deleteItem(item.id)"></i>
           </td>
         </tr>
-      </tbody>
-    </table>
+        </tbody>
+      </table>
+    </div>
     <select [(ngModel)]="order.status"
             class="form-control"
             name="status"

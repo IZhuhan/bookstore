@@ -1,5 +1,5 @@
 <div class="container">
-  <div class="card card-body" *ngIf="book">
+  <div class="card card-body mb-5" *ngIf="book">
     <h2 class="card-title text-primary">Edit book: {{book.name}}</h2>
     <form #form="ngForm" (ngSubmit)="editBook()">
       <div class="form-group">

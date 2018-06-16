@@ -2,3 +2,12 @@
 .dropdown-item .fa-remove {
   cursor: pointer;
 }
+
+@media (max-width: 576px) {
+  .dropdown {
+    position: static;
+  }
+  .dropdown-menu-right {
+    width: 100%;
+  }
+}

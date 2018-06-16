@@ -1,8 +1,8 @@
 <div class="container">
   <!-- Books -->
   <div class="row" >
-    <div class="col-4" *ngFor="let book of books">
-      <div class="card card-body">
+    <div class="col-12 col-md-6 col-lg-4" *ngFor="let book of books">
+      <div class="card card-body mb-4">
         <div class="card-title d-flex align-items-center">{{book.name}} <span class="badge badge-success ml-auto">{{book.price  | currency: "USD"}}</span></div>
         <span class="text-info">{{book.author}}</span>
         <span class="text-primary">{{book.date | customDate: "ru-RU": "short"}}</span>

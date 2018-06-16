@@ -20,8 +20,7 @@ export class CustomDatePipe implements PipeTransform {
         result = date.toLocaleString(locale);
         break;
     }
-    // console.log(value, locale, format);
+
     return result;
   }
-
 }
